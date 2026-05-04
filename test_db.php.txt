@@ -1,0 +1,15 @@
+<?php
+// Database configuration
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "mkasiexchange_db"; // Make sure this matches your DB name in phpMyAdmin
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if ($conn) {
+    echo "<h1 style='color:green;'>System Online: Database Connected!</h1>";
+} else {
+    echo "<h1 style='color:red;'>Connection Error: " . mysqli_connect_error() . "</h1>";
+}
+?>

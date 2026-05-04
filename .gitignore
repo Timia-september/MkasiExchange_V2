@@ -1,0 +1,20 @@
+# Database Credentials & Private Config
+db_connect.php
+config.php
+
+# Environment Files
+.env
+
+# XAMPP / Server specific
+phpMyAdmin/
+tmp/
+logs/
+.htaccess
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
