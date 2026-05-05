@@ -42,15 +42,36 @@ if (isset($_POST['post_item_btn'])) {
             <div class="col-md-6 card p-4 shadow-sm border-0" style="border-radius: 20px;">
                 <h2 class="text-center text-primary"><?php echo $words['nav_sell']; ?></h2>
                 <form method="POST" enctype="multipart/form-data">
-                    <div class="mb-3"><label><?php echo $words['item_label']; ?></label><input type="text" name="item_name" class="form-control" required></div>
-                    <div class="mb-3"><label><?php echo $words['price_label']; ?></label><input type="number" name="price" class="form-control" required></div>
-                    <div class="mb-3"><label><?php echo $words['location']; ?></label><input type="text" name="location" class="form-control" placeholder="e.g. Langa" required></div>
-                    <div class="mb-3"><label><?php echo $words['desc_label']; ?></label><textarea name="description" class="form-control"></textarea></div>
-                    <div class="mb-3"><label><?php echo $words['photo_label']; ?></label><input type="file" name="item_image" class="form-control" accept="image/*" required></div>
-                    <button type="submit" name="post_item_btn" class="btn btn-primary w-100"><?php echo $words['nav_sell']; ?></button>
+                    <div class="mb-3 text-start">
+                        <label class="form-label fw-bold"><?php echo $words['item_label'] ?? 'Item Name'; ?></label>
+                        <input type="text" name="item_name" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label fw-bold"><?php echo $words['price_label'] ?? 'Price (R)'; ?></label>
+                        <input type="number" step="0.01" name="price" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label fw-bold"><?php echo $words['location_label'] ?? 'Location'; ?></label>
+                        <input type="text" name="location" class="form-control" placeholder="e.g. Langa" required>
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label fw-bold"><?php echo $words['desc_label'] ?? 'Description'; ?></label>
+                        <textarea name="description" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label fw-bold"><?php echo $words['photo_label'] ?? 'Product Photo'; ?></label>
+                        <input type="file" name="item_image" class="form-control" accept="image/*" required>
+                    </div>
+
+                    <button type="submit" name="post_item_btn" class="btn btn-primary w-100">+ <?php echo $words['nav_sell'] ?? 'Sell Something'; ?></button>
                 </form>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

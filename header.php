@@ -29,22 +29,25 @@ include_once 'languages.php';
                 </div>
 
                 <?php if(isset($_SESSION['user_id'])): ?>
-                    <a class="nav-link fw-bold px-3 text-white" href="profile.php">
-                        Hi, <?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?>
-                    </a>
+                    <div class="nav-item dropdown ms-3">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center p-0" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center fw-bold border" style="width: 40px; height: 40px; font-size: 14px;">
+                                <?php echo strtoupper(substr($_SESSION['username'] ?: 'User', 0, 1)); ?>
+                            </div>
+                        </a>
 
-                    
-                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
-                        <a class="nav-link text-info fw-bold px-3" href="admin_dashboard.php">Dashboard</a>
-                    <?php endif; ?>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item py-2" href="profile.php">Profile</a></li>
+            
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
+                                <li><a class="dropdown-item py-2 text-info" href="admin_dashboard.php">Admin Dashboard</a></li>
+                            <?php endif; ?>
 
-                    
-                    <?php if (!isset($hide_sell) || $hide_sell !== true): ?>
-                        <a class="nav-link fw-bold px-3" href="sell.php"><?php echo $words['nav_sell'] ?? 'Sell'; ?></a>
-                    <?php endif; ?>
-
-                    <a class="nav-link fw-bold px-3" href="logout.php"><?php echo $words['nav_logout'] ?? 'Logout'; ?></a>
-
+                            <li><a class="dropdown-item py-2" href="sell.php"><?php echo $words['nav_sell'] ?? 'Sell Something'; ?></a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 text-danger" href="logout.php">Log out</a></li>
+                        </ul>
+                    </div>
                 <?php else: ?>
                     <a class="nav-link px-3" href="login.php"><?php echo $words['nav_login'] ?? 'Login'; ?></a>
                     <a class="nav-link fw-bold px-3" href="register.php"><?php echo $words['nav_register'] ?? 'Register'; ?></a>
