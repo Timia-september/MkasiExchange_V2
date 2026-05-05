@@ -1,1 +1,0 @@
-An easily scalable C2C e-commerce platform that is developed using PHP and MySQL database. This solution is tailored exclusively for the informal sector in South Africa with a primary emphasis on efficiency and simplicity.
