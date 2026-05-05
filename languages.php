@@ -30,6 +30,13 @@ $lang = [
         'desc_label'=> 'Description',
         'photo_label'=> 'Product Photo',
         'post_btn'     => 'Post to Marketplace',
+        'admin_title'     => 'Admin Management Control',
+        'total_users'     => 'Total Registered Users',
+        'active_listings' => 'Active Listings',
+        'action_col'      => 'Action',
+        'delete_btn'      => 'Delete',
+        'recent_listings' => 'Recent Listings',
+        'item_header'     => 'Item',
     ],
 
     'zu' => [
@@ -62,6 +69,13 @@ $lang = [
         'desc_label'=> 'Incazelo',
         'photo_label'=> 'Isithombe Somkhiqizo',
         'post_btn' => 'Thumela Emakethe',
+        'admin_title'     => 'Ukulawulwa Kwabaphathi',
+        'total_users'     => 'Abasebenzisi Ababhalisiwe',
+        'active_listings' => 'Imikhiqizo Ekhona',
+        'action_col'      => 'Isenzo',
+        'delete_btn'      => 'Susa',
+        'recent_listings' => 'Imikhiqizo Yakamuva',
+        'item_header'     => 'Umkhiqizo',
     ],
 
     'xh' => [
@@ -94,6 +108,13 @@ $lang = [
         'desc_label'=> 'Inkcazo',
         'photo_label'=> 'Ifoto yeMveliso',
         'post_btn' => 'Thumela kwindawo yentengiso',
+        'admin_title'     => 'Ulawulo lwabaPhathi',
+        'total_users'     => 'Abasebenzisi ababhalisiweyo',
+        'active_listings' => 'Iimveliso ezikhoyo',
+        'action_col'      => 'Isenzo',
+        'delete_btn'      => 'Cima',
+        'recent_listings' => 'Iimveliso zamva nje',
+        'item_header'     => 'Imveliso',
     ],
 ];    
 

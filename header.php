@@ -29,7 +29,9 @@ if (file_exists('language.php')) {
 
                 
                 <?php if(isset($_SESSION['user_id'])): ?>
-                    <a class="nav-link fw-bold px-3" href="sell.php"><?php echo $words['nav_sell'] ?? 'Sell Something'; ?></a>
+                    <?php if (!isset($hide_sell) || $hide_sell !== true): ?>
+                        <a class="nav-link fw-bold px-3" href="sell.php"><?php echo $words['nav_sell'] ?? 'Sell Something'; ?></a>
+                    <?php endif; ?>
                     <a class="nav-link fw-bold px-3" href="logout.php"><?php echo $words['nav_logout'] ?? 'Logout'; ?></a>
                 <?php else: ?>
                     <a class="nav-link px-3" href="login.php"><?php echo $words['nav_login'] ?? 'Login'; ?></a>
