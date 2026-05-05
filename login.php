@@ -15,6 +15,7 @@ if (isset($_POST['login_btn'])) {
         
         if (password_verify($pass, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $row['username'];
             $_SESSION['role']    = $user['role'];
             
             if ($user['role'] == 'Admin') {

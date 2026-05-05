@@ -18,8 +18,9 @@ if (isset($_POST['post_item_btn'])) {
     $folder = "uploads/" . time() . "_" . $filename; 
 
     if (move_uploaded_file($tempname, $folder)) {
-        $query = "INSERT INTO products (user_id, item_name, price, location, description, image_path) 
-                  VALUES ('$uid', '$name', '$price', '$loc', '$desc', '$folder')";
+        $user_phone = $_SESSION['phone'] ?? ''; 
+        $query = "INSERT INTO products (user_id, item_name, price, location, description, image_path, phone) 
+          VALUES ('$uid', '$name', '$price', '$loc', '$desc', '$folder', '$user_phone')";
         mysqli_query($conn, $query);
         echo "<script>alert('Item listed with photo!'); window.location='index.php';</script>";
     } else {
@@ -41,7 +42,7 @@ if (isset($_POST['post_item_btn'])) {
             <div class="col-md-6 card p-4 shadow-sm border-0" style="border-radius: 20px;">
                 <h2 class="text-center text-primary"><?php echo $words['nav_sell']; ?></h2>
                 <form method="POST" enctype="multipart/form-data">
-                    <div class="mb-3"><label><?php echo $words['username']; ?></label><input type="text" name="item_name" class="form-control" required></div>
+                    <div class="mb-3"><label><?php echo $words['item_label']; ?></label><input type="text" name="item_name" class="form-control" required></div>
                     <div class="mb-3"><label><?php echo $words['price_label']; ?></label><input type="number" name="price" class="form-control" required></div>
                     <div class="mb-3"><label><?php echo $words['location']; ?></label><input type="text" name="location" class="form-control" placeholder="e.g. Langa" required></div>
                     <div class="mb-3"><label><?php echo $words['desc_label']; ?></label><textarea name="description" class="form-control"></textarea></div>
