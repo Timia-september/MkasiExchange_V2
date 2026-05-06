@@ -27,14 +27,13 @@ global $words, $current_lang;
                     <a href="change_lang.php?l=zu" class="btn btn-sm <?php echo ($current_lang == 'zu') ? 'btn-warning' : 'btn-outline-light'; ?> me-1">ZU</a>
                     <a href="change_lang.php?l=xh" class="btn btn-sm <?php echo ($current_lang == 'xh') ? 'btn-warning' : 'btn-outline-light'; ?> me-1">XH</a>
                 </div>
-
+            
                 <?php if(isset($_SESSION['user_id'])): ?>
                     <div class="nav-item dropdown ms-3">
                         <a class="nav-link dropdown-toggle d-flex align-items-center p-0" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center fw-bold border" style="width: 40px; height: 40px; font-size: 14px;">
                                 <?php 
                                     $name = $_SESSION['username'] ?? 'User';
-                                    // CHANGED: Use $nameParts instead of $words to avoid overwriting your translation array
                                     $nameParts = explode(" ", $name);
                                     $initials = "";
                                     foreach ($nameParts as $w) { 
@@ -49,7 +48,11 @@ global $words, $current_lang;
                             <li><a class="dropdown-item py-2" href="profile.php">
                                 <?php echo $words['nav_profile'] ?? 'Profile'; ?>
                             </a></li>
-    
+
+                            <li><a class="dropdown-item py-2" href="dashboard.php">
+                                <i class="bi bi-speedometer2 pe-2"></i><?php echo $words['my_listings'] ?? 'My Transactions'; ?>
+                            </a></li>
+                            
                             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
                                 <li><a class="dropdown-item py-2 text-info" href="admin_dashboard.php">
                                     Admin Dashboard
