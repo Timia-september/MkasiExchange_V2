@@ -5,6 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 include_once 'db_config.php';
 include_once 'languages.php';
+global $words;
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #001f3f;">
@@ -21,31 +22,51 @@ include_once 'languages.php';
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav ms-auto align-items-center">
                 
-                
-                <div class="d-flex me-lg-3 my-2 my-lg-0">
-                    <a href="change_lang.php?l=en" class="btn btn-sm btn-outline-light me-1">EN</a>
-                    <a href="change_lang.php?l=zu" class="btn btn-sm btn-outline-light me-1">ZU</a>
-                    <a href="change_lang.php?l=xh" class="btn btn-sm btn-outline-light">XH</a>
+                <?php 
+                    $active_l = $_SESSION['lang'] ?? 'en'; 
+                ?>
+                <div class="d-flex me-3">
+                    <a href="change_lang.php?l=en" class="btn btn-sm <?php echo ($current_lang == 'en') ? 'btn-warning' : 'btn-outline-light'; ?> me-1">EN</a>
+                    <a href="change_lang.php?l=zu" class="btn btn-sm <?php echo ($current_lang == 'zu') ? 'btn-warning' : 'btn-outline-light'; ?> me-1">ZU</a>
+                    <a href="change_lang.php?l=xh" class="btn btn-sm <?php echo ($current_lang == 'xh') ? 'btn-warning' : 'btn-outline-light'; ?> me-1">XH</a>
                 </div>
 
                 <?php if(isset($_SESSION['user_id'])): ?>
                     <div class="nav-item dropdown ms-3">
                         <a class="nav-link dropdown-toggle d-flex align-items-center p-0" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center fw-bold border" style="width: 40px; height: 40px; font-size: 14px;">
-                                <?php echo strtoupper(substr($_SESSION['username'] ?: 'User', 0, 1)); ?>
+                                <?php 
+                                    $name = $_SESSION['username'] ?? 'User';
+                                    $words = explode(" ", $name);
+                                    $initials = "";
+                                    foreach ($words as $w) { $initials .= $w[0]; }
+                                    echo strtoupper(substr($initials, 0, 2)); 
+                                ?>
                             </div>
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item py-2" href="profile.php">Profile</a></li>
-            
+                            <li><a class="dropdown-item py-2" href="profile.php">
+                                <?php echo $words['nav_profile'] ?? 'Profile'; ?>
+                            </a></li>
+    
+    
                             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
-                                <li><a class="dropdown-item py-2 text-info" href="admin_dashboard.php">Admin Dashboard</a></li>
+                                <li><a class="dropdown-item py-2 text-info" href="admin_dashboard.php">
+                                    <?php echo $words['nav_dashboard'] ?? 'Admin Dashboard'; ?>
+                                </a></li>
                             <?php endif; ?>
 
-                            <li><a class="dropdown-item py-2" href="sell.php"><?php echo $words['nav_sell'] ?? 'Sell Something'; ?></a></li>
+                            <li><a class="dropdown-item py-2" href="sell.php">
+                                 <?php echo $words['nav_sell'] ?? 'Sell Something'; ?>
+                            </a></li>
+    
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item py-2 text-danger" href="logout.php">Log out</a></li>
+    
+
+                            <li><a class="dropdown-item py-2 text-danger" href="logout.php">
+                                <?php echo $words['nav_logout'] ?? 'Log out'; ?>
+                            </a></li>
                         </ul>
                     </div>
                 <?php else: ?>

@@ -7,5 +7,7 @@ if (isset($_GET['l'])) {
     }
 }
 
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+$back = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+header("Location: " . $back);
 exit();
+?>

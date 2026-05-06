@@ -3,6 +3,9 @@ session_start();
 include 'db_config.php';
 include 'languages.php';
 
+if (!isset($words) || empty($words)) {
+    $words = $_SESSION['current_words'] ?? $lang['en'];
+}
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -40,13 +43,13 @@ $my_items = mysqli_query($conn, "SELECT * FROM products WHERE user_id = '$user_i
                 <p class="text-muted"><?php echo $user['phone']; ?></p>
                 <hr>
                 <div class="mb-2">
-                    <span class="badge rounded-pill bg-secondary px-3"><?php echo ucfirst($user['role']); ?></span>
+                    <span class="badge rounded-pill bg-secondary px-3"> <?php echo $words[strtolower($user['role'])] ?? ucfirst($user['role']); ?> </span>
                 </div>
             </div>
         </div>
 
         <div class="col-md-8">
-            <h4 class="mb-4"><?php echo $words['my_listings'] ?? 'My Listings'; ?></h4>
+            <h4><?php echo $words['my_listings'] ?? 'My Listings'; ?></h4>
             <div class="table-responsive bg-white p-3 shadow-sm rounded">
                 <table class="table align-middle">
                     <thead>
@@ -63,7 +66,7 @@ $my_items = mysqli_query($conn, "SELECT * FROM products WHERE user_id = '$user_i
                             <td>R <?php echo number_format($item['price'], 2); ?></td>
                             <td>
                                 <a href="edit_item.php?id=<?php echo $item['id']; ?>" class="btn btn-sm btn-outline-primary me-1">
-                                    Edit
+                                    <?php echo $words['edit_btn'] ?? 'Edit'; ?>
                                 </a>
                                 <a href="delete_item.php?id=<?php echo $item['id']; ?>" class="btn btn-sm btn-outline-danger">
                                     <?php echo $words['delete_btn'] ?? 'Delete'; ?>

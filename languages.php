@@ -13,7 +13,7 @@ $lang = [
         'need_account' => 'Need an account? Register here',
         'nav_login' => 'Login',
         'nav_register' => 'Register',
-        'nav_sell' => '+ Sell Something',
+        'nav_sell' => 'Sell Something',
         'nav_logout' => 'Logout',
         'location' => 'Location',
         'available' => 'Still available?',
@@ -37,6 +37,10 @@ $lang = [
         'delete_btn'      => 'Delete',
         'recent_listings' => 'Recent Listings',
         'item_header'     => 'Item',
+        'nav_profile'  => 'Profile',
+        'edit_btn'     => 'Edit',
+        'standard'     => 'Standard',
+        'my_listings'  => 'My Listings',
     ],
 
     'zu' => [
@@ -52,7 +56,7 @@ $lang = [
         'need_account' => 'Awunayo i-akhawunti? Bhalisa lapha',
         'nav_login' => 'Ngena',
         'nav_register' => 'Bhalisa',
-        'nav_sell' => '+ Dayisa Okuthile',
+        'nav_sell' => 'Dayisa Okuthile',
         'nav_logout' => 'Phuma',
         'location' => 'Indawo',
         'available' => 'Ikhona namanje?',
@@ -76,6 +80,10 @@ $lang = [
         'delete_btn'      => 'Susa',
         'recent_listings' => 'Imikhiqizo Yakamuva',
         'item_header'     => 'Umkhiqizo',
+        'nav_profile' => 'Iphrofayela',
+        'edit_btn' => 'Hlela',
+        'standard' => 'Ovamile',
+        'my_listings' => 'Uhlu Lwami',
     ],
 
     'xh' => [
@@ -91,7 +99,7 @@ $lang = [
         'need_account' => 'Awunayo i-akhawunti? Bhalisa apha',
         'nav_login' => 'Ngena',
         'nav_register' => 'Bhalisa',
-        'nav_sell' => '+ Thengisa Into',
+        'nav_sell' => 'Thengisa Into',
         'nav_logout' => 'Phuma',
         'location' => 'Indawo',
         'available' => 'Isafumaneka?',
@@ -115,10 +123,19 @@ $lang = [
         'delete_btn'      => 'Cima',
         'recent_listings' => 'Iimveliso zamva nje',
         'item_header'     => 'Imveliso',
+        'nav_profile' => 'Iprofayile',
+        'edit_btn' => 'Hlela',
+        'standard' => 'Oqhelekileyo',
+        'my_listings' => 'Uluhlu lwam',
     ],
 ];    
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $current_lang = $_SESSION['lang'] ?? 'en';
-$words = $lang[$current_lang];
+global $words;
+$words = $lang[$current_lang] ?? $lang['en'];
+$_SESSION['current_words'] = $words;
 ?>

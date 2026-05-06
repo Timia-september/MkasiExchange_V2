@@ -3,6 +3,9 @@ session_start();
 include 'db_config.php';
 include 'languages.php';
 
+if (!isset($words) || empty($words)) {
+    $words = $_SESSION['current_words'] ?? $lang['en'];
+}
 if (!isset($_SESSION['user_id'])) { header("Location: login.php"); exit(); }
 
 if (isset($_POST['post_item_btn'])) {
