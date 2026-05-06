@@ -1,15 +1,16 @@
 <?php
 session_start();
 include 'db_config.php';
-include 'languages.php';
+include_once 'languages.php';
 
 if (!isset($words) || empty($words)) {
-    $words = $_SESSION['current_words'] ?? $lang['en'];
+    $current_lang = $_SESSION['lang'] ?? 'en';
+    $words = $lang[$current_lang] ?? $lang['en'];
 }
 
 $query = "SELECT p.*, u.username 
           FROM products p 
-          JOIN users u ON p.user_id = u.id 
+          INNER JOIN users u ON p.user_id = u.id 
           ORDER BY p.created_at DESC";
 
 $result = mysqli_query($conn, $query);

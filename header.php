@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 include_once 'db_config.php';
 include_once 'languages.php';
-global $words;
+global $words, $current_lang; 
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: #001f3f;">
@@ -22,9 +22,6 @@ global $words;
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav ms-auto align-items-center">
                 
-                <?php 
-                    $active_l = $_SESSION['lang'] ?? 'en'; 
-                ?>
                 <div class="d-flex me-3">
                     <a href="change_lang.php?l=en" class="btn btn-sm <?php echo ($current_lang == 'en') ? 'btn-warning' : 'btn-outline-light'; ?> me-1">EN</a>
                     <a href="change_lang.php?l=zu" class="btn btn-sm <?php echo ($current_lang == 'zu') ? 'btn-warning' : 'btn-outline-light'; ?> me-1">ZU</a>
@@ -37,9 +34,12 @@ global $words;
                             <div class="rounded-circle bg-light text-dark d-flex align-items-center justify-content-center fw-bold border" style="width: 40px; height: 40px; font-size: 14px;">
                                 <?php 
                                     $name = $_SESSION['username'] ?? 'User';
-                                    $words = explode(" ", $name);
+                                    // CHANGED: Use $nameParts instead of $words to avoid overwriting your translation array
+                                    $nameParts = explode(" ", $name);
                                     $initials = "";
-                                    foreach ($words as $w) { $initials .= $w[0]; }
+                                    foreach ($nameParts as $w) { 
+                                        if(!empty($w)) $initials .= $w[0]; 
+                                    }
                                     echo strtoupper(substr($initials, 0, 2)); 
                                 ?>
                             </div>
@@ -50,10 +50,9 @@ global $words;
                                 <?php echo $words['nav_profile'] ?? 'Profile'; ?>
                             </a></li>
     
-    
                             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
                                 <li><a class="dropdown-item py-2 text-info" href="admin_dashboard.php">
-                                    <?php echo $words['nav_dashboard'] ?? 'Admin Dashboard'; ?>
+                                    Admin Dashboard
                                 </a></li>
                             <?php endif; ?>
 
@@ -62,7 +61,6 @@ global $words;
                             </a></li>
     
                             <li><hr class="dropdown-divider"></li>
-    
 
                             <li><a class="dropdown-item py-2 text-danger" href="logout.php">
                                 <?php echo $words['nav_logout'] ?? 'Log out'; ?>
