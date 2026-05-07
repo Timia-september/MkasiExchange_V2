@@ -45,6 +45,10 @@ global $words, $current_lang;
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item py-2" href="index.php">
+                                <?php echo $words['nav_home'] ?? 'Home'; ?>
+                            </a></li>
+                            
                             <li><a class="dropdown-item py-2" href="profile.php">
                                 <?php echo $words['nav_profile'] ?? 'Profile'; ?>
                             </a></li>

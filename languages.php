@@ -51,6 +51,7 @@ $lang = [
         'sold_upper'    => 'SOLD',
         'pending_upper' => 'PENDING',
         'not_available' => 'Item Not Available',
+        'nav_home' => 'Home',
     ],
 
     'zu' => [
@@ -104,6 +105,7 @@ $lang = [
         'sold_upper'    => 'KUDAYISIWE',
         'pending_upper' => 'KUSALINDILE',
         'not_available' => 'Into Ayitholakali',
+        'nav_home' => 'Ikhaya',
     ],
 
     'xh' => [
@@ -157,6 +159,7 @@ $lang = [
         'sold_upper'    => 'ITHENGISIWE',
         'pending_upper' => 'AYIFUMANEKI',
         'not_available' => 'Imveliso ayifumaneki',
+        'nav_home' => 'Ekhaya',
     ],
 ];    
 
