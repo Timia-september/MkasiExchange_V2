@@ -50,9 +50,9 @@ global $words, $current_lang;
                             </a></li>
 
                             <li><a class="dropdown-item py-2" href="dashboard.php">
-                                <i class="bi bi-speedometer2 pe-2"></i><?php echo $words['my_listings'] ?? 'My Transactions'; ?>
+                                <?php echo $words['my_listings'] ?? 'My Transactions'; ?>
                             </a></li>
-                            
+
                             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'): ?>
                                 <li><a class="dropdown-item py-2 text-info" href="admin_dashboard.php">
                                     Admin Dashboard

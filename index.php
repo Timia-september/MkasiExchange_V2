@@ -8,7 +8,6 @@ if (!isset($words) || empty($words)) {
     $words = $lang[$current_lang] ?? $lang['en'];
 }
 
-
 $query = "SELECT p.*, u.username 
           FROM products p 
           JOIN users u ON p.user_id = u.id 
@@ -24,6 +23,7 @@ if (!$result) { $result = false; }
 <head>
     <title>MKasiExchange</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-light">
@@ -38,13 +38,14 @@ if (!$result) { $result = false; }
                         
                         <div class="position-relative">
                             <img src="<?php echo $row['image_path']; ?>" class="card-img-top product-img" alt="item" loading="lazy">
+                            
                             <?php if ($row['status'] === 'sold'): ?>
                                 <div class="position-absolute top-0 end-0 bg-danger text-white px-3 py-1 m-2 fw-bold rounded-pill shadow-sm">
-                                    SOLD
+                                    <?php echo $words['sold_upper'] ?? 'SOLD'; ?>
                                 </div>
-                            <?php elseif ($row['status'] === 'pending'): ?>
+                            <?php elseif ($row['status'] === 'pending' || $row['status'] === 'escrow'): ?>
                                 <div class="position-absolute top-0 end-0 bg-warning text-dark px-3 py-1 m-2 fw-bold rounded-pill shadow-sm">
-                                    PENDING
+                                    <?php echo $words['pending_upper'] ?? 'PENDING'; ?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -78,7 +79,7 @@ if (!$result) { $result = false; }
                                 </form>
                             <?php else: ?>
                                 <button class="btn btn-secondary w-100 mt-2" disabled>
-                                    Item Not Available
+                                    <i class="bi bi-slash-circle pe-2"></i><?php echo $words['not_available'] ?? 'Item Not Available'; ?>
                                 </button>
                             <?php endif; ?>
 
